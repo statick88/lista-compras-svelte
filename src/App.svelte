@@ -1,16 +1,25 @@
 <script>
-  let items = ['Manzanas', 'Bananas', 'Naranjas'];
+  let items = [
+    { name: 'Manzanas', completed: false },
+    { name: 'Bananas', completed: false },
+    { name: 'Naranjas', completed: false }
+  ];
+
   let newItem = '';
 
   function addItem() {
     if (newItem.trim() !== '') {
-      items = [...items, newItem];
+      items = [...items, { name: newItem, completed: false }];
       newItem = '';
     }
   }
 
   function removeItem(index) {
     items = items.filter((_, i) => i !== index);
+  }
+
+  function markCompleted(index) {
+    items[index].completed = true;
   }
 </script>
 
@@ -20,7 +29,14 @@
 <button on:click={addItem}>Add</button>
 
 <ul>
-  {#each items as item, index}
-    <li>{item} <button on:click={() => removeItem(index)}>Remove</button></li>
+  {#each items as { name, completed }, index}
+    <li>
+      {#if !completed}
+        {name} <button on:click={() => markCompleted(index)}>Mark as Completed</button>
+      {:else}
+        <s>{name}</s> (Completed)
+        <button on:click={() => removeItem(index)}>Remove</button>
+      {/if}
+    </li>
   {/each}
 </ul>
