@@ -29,13 +29,12 @@ Asegúrese de actualizar las pruebas según corresponda.
 ## Licencia
 
 [MIT](https://choosealicense.com/licenses/mit/)
-```
 
 ---
 
 # Ramas 
 
-- master: Rama principal, contiene el código del proyecto.
+- main: Rama principal, contiene el código del proyecto.
 - parte001: Rama que contiene el código de la parte 1 del tutorial.
 - parte002: Rama que contiene el código de la parte 2 del tutorial.
 - parte003: Rama que contiene el código de la parte 3 del tutorial.
