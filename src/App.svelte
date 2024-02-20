@@ -1,16 +1,24 @@
 <script>
-  let items = ['Manzanas', 'Bananas', 'Naranjas'];
+  let items = [
+    { name: 'Manzanas', completed: false },
+    { name: 'Bananas', completed: false },
+    { name: 'Naranjas', completed: false }
+  ];
   let newItem = '';
 
   function addItem() {
     if (newItem.trim() !== '') {
-      items = [...items, newItem];
+      items = [...items, { name: newItem, completed: false }];
       newItem = '';
     }
   }
 
   function removeItem(index) {
     items = items.filter((_, i) => i !== index);
+  }
+
+  function toggleCompleted(index) {
+    items[index].completed = !items[index].completed;
   }
 </script>
 
@@ -19,8 +27,21 @@
 <input type="text" bind:value={newItem} placeholder="Add item">
 <button on:click={addItem}>Add</button>
 
-<ul>
-  {#each items as item, index}
-    <li>{item} <button on:click={() => removeItem(index)}>Remove</button></li>
-  {/each}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Action</th>
+      <th>Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    {#each items as item, index}
+      <tr>
+        <td style="text-decoration: {item.completed ? 'line-through' : 'none'}">{item.name}</td>
+        <td><button on:click={() => removeItem(index)}>Remove</button></td>
+        <td><button on:click={() => toggleCompleted(index)}>{item.completed ? 'No comprado' : 'Comprado'}</button></td>
+      </tr>
+    {/each}
+  </tbody>
+</table>
