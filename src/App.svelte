@@ -1,16 +1,25 @@
 <script>
-  let items = ['Manzanas', 'Bananas', 'Naranjas'];
+  let items = [
+    { text: 'Manzanas', completed: false },
+    { text: 'Bananas', completed: false },
+    { text: 'Naranjas', completed: false },
+  ];
+
   let newItem = '';
 
   function addItem() {
     if (newItem.trim() !== '') {
-      items = [...items, newItem];
+      items = [...items, { text: newItem, completed: false }];
       newItem = '';
     }
   }
 
   function removeItem(index) {
     items = items.filter((_, i) => i !== index);
+  }
+
+  function toggleCompleted(index) {
+    items[index].completed = !items[index].completed;
   }
 </script>
 
@@ -23,11 +32,23 @@
   </div>
 
   <ul class="list-group">
-    {#each items as item, index}
+    {#each items as { text, completed }, index}
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        {item}
-        <button class="btn btn-danger" on:click={() => removeItem(index)}>Remove</button>
+        <span class={completed ? 'text-decoration-line-through' : ''}>{text}</span>
+        <div>
+          <button class="btn btn-success me-2" on:click={() => toggleCompleted(index)}>
+            {completed ? 'incompleto' : 'completo'}
+          </button>
+          <button class="btn btn-danger" on:click={() => removeItem(index)}>Remove</button>
+        </div>
       </li>
     {/each}
   </ul>
 </div>
+
+<style>
+  .text-decoration-line-through {
+    text-decoration: line-through;
+    color: #6c757d; /* Color de texto gris para elementos completados */
+  }
+</style>
