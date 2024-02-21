@@ -77,3 +77,31 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.lista{
+  width: 500px;
+  /* background-color: slateblue; */
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 4px solid #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.botones{
+  margin: 0.5rem;
+}
+
+.botones:hover{
+  background-color: #fff;
+  transition: 0.4s;
+  color: #000;
+}
+
+.btn-principal{
+  height: 30px !important;
+  border: 3px solid #fff;
+  border-style: groove;
+}
