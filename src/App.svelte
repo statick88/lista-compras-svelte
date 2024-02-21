@@ -14,13 +14,20 @@
   }
 </script>
 
-<h1>Shopping List</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Shopping List</h1>
 
-<input type="text" bind:value={newItem} placeholder="Add item">
-<button on:click={addItem}>Add</button>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" bind:value={newItem} placeholder="Add item">
+    <button class="btn btn-primary" on:click={addItem}>Add</button>
+  </div>
 
-<ul>
-  {#each items as item, index}
-    <li>{item} <button on:click={() => removeItem(index)}>Remove</button></li>
-  {/each}
-</ul>
+  <ul class="list-group">
+    {#each items as item, index}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {item}
+        <button class="btn btn-danger" on:click={() => removeItem(index)}>Remove</button>
+      </li>
+    {/each}
+  </ul>
+</div>
