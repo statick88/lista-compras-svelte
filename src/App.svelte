@@ -12,15 +12,24 @@
   function removeItem(index) {
     items = items.filter((_, i) => i !== index);
   }
+
+  function toggleItem(index) {
+    items[index] = items[index].startsWith('~') ? items[index].slice(2) : '~' + items[index];
+  }
 </script>
 
 <h1>Shopping List</h1>
 
-<input type="text" bind:value={newItem} placeholder="Add item">
-<button on:click={addItem}>Add</button>
+<input class="btn-principal" type="text" bind:value={newItem} placeholder="Agregar item">
+<button  on:click={addItem}>Add</button>
 
-<ul>
+<ul class="lista">
   {#each items as item, index}
-    <li>{item} <button on:click={() => removeItem(index)}>Remove</button></li>
+    <li style="{items[index].startsWith('~~') ? 'text-decoration: line-through;' : ''}">
+      <label>
+        <input type="checkbox" on:click={() => toggleItem(index)}> {items[index].startsWith('~~') ? items[index].slice(2) : items[index]}
+      </label>
+      <button class="botones" on:click={() => removeItem(index)}>Remove</button>
+    </li>
   {/each}
 </ul>
