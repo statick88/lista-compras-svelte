@@ -1,4 +1,7 @@
 # Lista de Compras en Svelte
+- Bárbara Espinosa
+- Jeimmy Tinoco
+- Diego Torres
 
 ## Descripción
 
