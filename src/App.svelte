@@ -34,7 +34,9 @@
   <ul class="list-group">
     {#each items as { text, completed }, index}
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span class={completed ? 'text-decoration-line-through' : ''}>{text}</span>
+        <span class={completed ? 'text-decoration-line-through' : ''}>{text}&nbsp;&nbsp;&nbsp;</span>
+
+
         <div>
           <button class="btn btn-success me-2" on:click={() => toggleCompleted(index)}>
             {completed ? 'incompleto' : 'completo'}
